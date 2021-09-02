@@ -1,0 +1,28 @@
+{
+  "name": "awstats-cli",
+  "version": "1.0.0",
+  "description": "Command line interface for AWStats",
+  "main": "./bin/AWStats",
+  "bin": {
+    "aws": "./bin/AWStats",
+    "awstats": "./bin/AWStats"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AWStats",
+    "website",
+    "framework",
+    "cli"
+  ],
+  "author": "Lete乐特",
+  "license": "MIT",
+  "dependencies": {
+    "awstats": "^1.0.0",
+    "commander": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=12.16.0"
+  }
+}

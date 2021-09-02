@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const packageJson = require('../package.json')
+const { init, generate, minify, server, deploy, clean } = require('awstats')
+
+// 查看版本号
+program.version(packageJson.version, '-v, --version')
+
+// 初始化
+program
+  .command('init')
+  .alias('i')
+  .description('Initialize AWStats | 初始化AWStats')
+  .action(() => init())
+
+// 生成
+program
+  .command('generate')
+  .alias('g')
+  .description('Generate static files | 生成静态文件')
+  .action(() => generate())
+
+// 压缩
+program
+  .command('minify')
+  .alias('m')
+  .description('Compressed static files 压缩静态文件')
+  .action(() => minify())
+
+// 本地预览
+program
+  .command('server')
+  .alias('s')
+  .description('Start a local service | 启动本地服务')
+  .action(() => server())
+
+// 部署
+program
+  .command('deploy')
+  .alias('d')
+  .description('Deploying Static Resources | 部署静态资源')
+  .action(() => deploy())
+
+// 清理
+program
+  .command('clean')
+  .alias('c')
+  .description('Cleaning up static files | 清理生成的静态文件')
+  .action(() => clean())
+
+program.parse(process.argv)
