@@ -19,7 +19,6 @@
   "author": "Lete乐特",
   "license": "MIT",
   "dependencies": {
-    "awstats": "^1.0.0",
     "commander": "^8.1.0"
   },
   "engines": {
