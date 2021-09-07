@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://github.com/lete114/hexo-theme-MengD" target="_blank">AWStats</a></h1>
+<h1 align="center"><a href="https://github.com/lete114/AWStats-cli" target="_blank">AWStats-cli</a></h1>
 <p align="center">Command line interface for AWStats.</p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 > 前提：你的电脑必须安装[Node.js](https://nodejs.org/)才能启动该项目
 
 ```bash
-awstats init # 初始化 可缩写为: aws i 
+awstats init # 初始化 可缩写为: aws i
 
 awstats generate # 生成 aws g (以此类推输入首字母即可)
 
