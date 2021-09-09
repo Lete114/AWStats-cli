@@ -5,7 +5,6 @@ const { join } = require('path')
 const packageJson = require('../package.json')
 const init = require('../lib/init')
 const awstatsPath = join(process.cwd(), 'node_modules/awstats/index.js')
-const { generate, minify, server, deploy, clean } = require(awstatsPath)
 
 // 查看版本号
 program.version(packageJson.version, '-v, --version')
@@ -17,40 +16,45 @@ program
   .description('Initialize AWStats | 初始化AWStats')
   .action((dirname) => init(dirname))
 
-// 生成
-program
-  .command('generate')
-  .alias('g')
-  .description('Generate static files | 生成静态文件')
-  .action(() => generate())
+// 检测是否已初始化
+if (require('fs').existsSync(awstatsPath)) {
+  const { generate, minify, server, deploy, clean } = require(awstatsPath)
 
-// 压缩
-program
-  .command('minify')
-  .alias('m')
-  .description('Compressed static files | 压缩静态文件')
-  .action(() => minify())
+  // 生成
+  program
+    .command('generate')
+    .alias('g')
+    .description('Generate static files | 生成静态文件')
+    .action(() => generate())
 
-// 本地预览
-program
-  .command('server')
-  .alias('s')
-  .option('-p, --port <port>', 'Reset the port | 重设端口')
-  .description('Start a local service | 启动本地服务')
-  .action((cmd) => server(cmd.port))
+  // 压缩
+  program
+    .command('minify')
+    .alias('m')
+    .description('Compressed static files | 压缩静态文件')
+    .action(() => minify())
 
-// 部署
-program
-  .command('deploy')
-  .alias('d')
-  .description('Deploying Static Resources | 部署静态资源')
-  .action(() => deploy())
+  // 本地预览
+  program
+    .command('server')
+    .alias('s')
+    .option('-p, --port <port>', 'Reset the port | 重设端口')
+    .description('Start a local service | 启动本地服务')
+    .action((cmd) => server(cmd.port))
 
-// 清理
-program
-  .command('clean')
-  .alias('c')
-  .description('Cleaning up static files | 清理生成的静态文件')
-  .action(() => clean())
+  // 部署
+  program
+    .command('deploy')
+    .alias('d')
+    .description('Deploying Static Resources | 部署静态资源')
+    .action(() => deploy())
+
+  // 清理
+  program
+    .command('clean')
+    .alias('c')
+    .description('Cleaning up static files | 清理生成的静态文件')
+    .action(() => clean())
+}
 
 program.parse(process.argv)
