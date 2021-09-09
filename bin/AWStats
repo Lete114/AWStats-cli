@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const { join } = require('path')
 const packageJson = require('../package.json')
-const { init, generate, minify, server, deploy, clean } = require('awstats')
+const init = require('../lib/init')
+const awstatsPath = join(process.cwd(), 'node_modules/awstats/index.js')
+const { generate, minify, server, deploy, clean } = require(awstatsPath)
 
 // 查看版本号
 program.version(packageJson.version, '-v, --version')
 
 // 初始化
 program
-  .command('init')
+  .command('init [dirname]')
   .alias('i')
   .description('Initialize AWStats | 初始化AWStats')
-  .action(() => init())
+  .action((dirname) => init(dirname))
 
 // 生成
 program
@@ -25,15 +28,16 @@ program
 program
   .command('minify')
   .alias('m')
-  .description('Compressed static files 压缩静态文件')
+  .description('Compressed static files | 压缩静态文件')
   .action(() => minify())
 
 // 本地预览
 program
   .command('server')
   .alias('s')
+  .option('-p, --port <port>', 'Reset the port | 重设端口')
   .description('Start a local service | 启动本地服务')
-  .action(() => server())
+  .action((cmd) => server(cmd.port))
 
 // 部署
 program
