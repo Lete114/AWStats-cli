@@ -11,9 +11,12 @@ public: public ## 渲染后输出的路径
 # 压缩
 minify:
   log: true # 是否打印日志
-  html: true
-  css: true
-  js: true
+  html:
+    enable: true
+  css:
+    enable: true
+  js:
+    enable: true
 
 # 部署
 deploy:

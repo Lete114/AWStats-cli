@@ -1,6 +1,6 @@
 {
   "name": "awstats-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Command line interface for AWStats",
   "main": "./bin/AWStats",
   "bin": {
@@ -21,8 +21,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^8.1.0",
-    "cross-spawn": "^7.0.3",
-    "simple-git": "^2.45.1"
+    "cross-spawn": "^7.0.3"
   },
   "engines": {
     "node": ">=12.16.0"

@@ -1,13 +1,24 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const { existsSync } = require('fs')
 const { join } = require('path')
-const packageJson = require('../package.json')
+const pkg = require('../package.json')
 const init = require('../lib/init')
 const awstatsPath = join(process.cwd(), 'node_modules/awstats/index.js')
 
+// 获取 AWStats 版本号
+const awstatusPkgPath = join(process.cwd(), 'package.json')
+let awstatusPkg = ''
+if (existsSync(awstatusPkgPath)) {
+  awstatusPkg = require(awstatusPkgPath).awstats.version
+  awstatusPkg = 'AWStats v' + awstatusPkg
+}
+
+const Cliversion = `AWStats-cli v${pkg.version}`
+
 // 查看版本号
-program.version(packageJson.version, '-v, --version')
+program.version(`${Cliversion}\n${awstatusPkg}`, '-v, --version')
 
 // 初始化
 program
@@ -17,7 +28,7 @@ program
   .action((dirname) => init(dirname))
 
 // 检测是否已初始化
-if (require('fs').existsSync(awstatsPath)) {
+if (existsSync(awstatsPath)) {
   const { generate, minify, server, deploy, clean } = require(awstatsPath)
 
   // 生成

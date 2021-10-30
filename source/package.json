@@ -12,7 +12,5 @@
   "awstats": {
     "version": ""
   },
-  "dependencies": {
-    "awstats": "^1.0.0"
-  }
+  "dependencies": {}
 }
