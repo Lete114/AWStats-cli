@@ -16,8 +16,8 @@ function DeepClone(obj = {}) {
   return JSON.parse(str)
 }
 
-function SetVersion() {
-  const pkgPath = resolvePath('package.json')
+function SetVersion(dirname) {
+  const pkgPath = resolvePath(dirname,'package.json')
   const pkg = require(pkgPath)
   const awstatsVersion = pkg.dependencies.awstats || ''
   const version = awstatsVersion.replace(/\^|\~|\*/, '')
