@@ -5,14 +5,16 @@ const { existsSync } = require('fs')
 const { join } = require('path')
 const pkg = require('../package.json')
 const init = require('../lib/init')
-const awstatsPath = join(process.cwd(), 'node_modules/awstats/index.js')
+const CWD = process.cwd()
+const awstatsPath = join(CWD, 'node_modules/awstats/index.js')
 
 // 获取 AWStats 版本号
-const awstatusPkgPath = join(process.cwd(), 'package.json')
+const awstatusPkgPath = join(CWD, 'package.json')
 let awstatusPkg = ''
 if (existsSync(awstatusPkgPath)) {
   awstatusPkg = require(awstatusPkgPath).awstats.version
   awstatusPkg = 'AWStats v' + awstatusPkg
+  require('../utils').SetVersion('')
 }
 
 const Cliversion = `AWStats-cli v${pkg.version}`
