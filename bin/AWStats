@@ -10,11 +10,15 @@ const awstatsPath = join(CWD, 'node_modules/awstats/index.js')
 
 // 获取 AWStats 版本号
 const awstatusPkgPath = join(CWD, 'package.json')
+
 let awstatusPkg = ''
 if (existsSync(awstatusPkgPath)) {
-  awstatusPkg = require(awstatusPkgPath).awstats.version
-  awstatusPkg = 'AWStats v' + awstatusPkg
-  require('../utils').SetVersion('')
+  const { awstats } = require(awstatusPkgPath)
+  if (awstats && awstats.version) {
+    awstatusPkg = require(awstatusPkgPath).awstats.version
+    awstatusPkg = 'AWStats v' + awstatusPkg
+    require('../utils').SetVersion('')
+  }
 }
 
 const Cliversion = `AWStats-cli v${pkg.version}`

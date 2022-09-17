@@ -11,11 +11,6 @@ function resolvePath(...Path) {
   return join(root_dir, ...Path)
 }
 
-function DeepClone(obj = {}) {
-  const str = JSON.stringify(obj)
-  return JSON.parse(str)
-}
-
 function SetVersion(dirname) {
   const pkgPath = resolvePath(dirname, 'package.json')
   const pkg = require(pkgPath)
@@ -25,4 +20,4 @@ function SetVersion(dirname) {
   writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), { encoding: 'utf-8' })
 }
 
-module.exports = { resolvePath, DeepClone, SetVersion }
+module.exports = { resolvePath, SetVersion }
